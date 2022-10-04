@@ -1,4 +1,4 @@
-# Goat book
+# Goat books
 
 #### Video Demo: Coming soon
 
