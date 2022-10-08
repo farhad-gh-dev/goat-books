@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Text from "Components/Atoms/Text/Text";
 import ProtectedRoutes from "./ProtectedRoutes";
 
-const AppRoutes: React.FC = () => {
-  const [auth, setAuth] = useState({ isLoading: true, user: true });
+const auth = { isLoading: false, user: false };
 
-  if (auth.isLoading) return <div>loading routes...</div>;
+const AppRoutes: React.FC = () => {
+  if (auth.isLoading) return <Text>loading routes...</Text>;
   return (
     <Routes>
-      <Route path="/" element={<div>/home</div>} />
-      <Route path="/auth/login" element={<div>login page</div>} />
+      <Route path="/" element={<Navigate to="/app" />} />
+      <Route path="/auth/login" element={<Text>login page</Text>} />
       <Route element={<ProtectedRoutes isAllowed={auth.user} />}>
-        <Route path="/app" element={<div>app</div>} />
-        <Route path="/app/test" element={<div>app/test</div>} />
+        <Route path="/app" element={<Text>app</Text>} />
       </Route>
     </Routes>
   );
