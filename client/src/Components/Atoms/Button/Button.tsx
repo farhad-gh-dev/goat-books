@@ -11,7 +11,8 @@ export type ButtonProps = {
 const Button: React.FC<ButtonProps> = (props) => {
   const { children = null, ...rest } = props;
 
-  return <StyledButton {...rest}>{children}</StyledButton>;
+  const ButtonRender: any = StyledButton;
+  return <ButtonRender {...rest}>{children}</ButtonRender>;
 };
 
 export default Button;
