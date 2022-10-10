@@ -7,9 +7,8 @@ export type Props = {
   className?: string;
 } & React.ComponentProps<"button">;
 
-const Button: React.FC<Props> = ({ children, ...props }) => {
-  const ButtonRender: any = StyledButton;
-  return <ButtonRender {...props}>{children}</ButtonRender>;
+const Button: React.FC<Props> = ({ children, ref, ...props }) => {
+  return <StyledButton {...props}>{children}</StyledButton>;
 };
 
 export default Button;
