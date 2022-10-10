@@ -1,18 +1,15 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { StyledButton } from "./Button.styled";
 
-export type ButtonProps = {
+export type Props = {
   variant?: "primary";
   fullWidth?: boolean;
   className?: string;
-  children?: ReactNode;
 } & React.ComponentProps<"button">;
 
-const Button: React.FC<ButtonProps> = (props) => {
-  const { children = null, ...rest } = props;
-
+const Button: React.FC<Props> = ({ children, ...props }) => {
   const ButtonRender: any = StyledButton;
-  return <ButtonRender {...rest}>{children}</ButtonRender>;
+  return <ButtonRender {...props}>{children}</ButtonRender>;
 };
 
 export default Button;

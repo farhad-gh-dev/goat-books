@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { StyledParagraph, StyledSpan } from "./Text.styled";
 
 export type namedFontWeightTypes =
@@ -8,8 +8,7 @@ export type namedFontWeightTypes =
   | "semi-bold"
   | "bold";
 
-export type TextProps = {
-  children?: ReactNode;
+export type Props = {
   isInline?: boolean;
   isSpan?: boolean;
   size?: "sm" | "md" | "lg";
@@ -19,7 +18,7 @@ export type TextProps = {
 } & React.ComponentProps<"p"> &
   React.ComponentProps<"span">;
 
-const Text: React.FC<TextProps> = ({
+const Text: React.FC<Props> = ({
   isSpan = false,
   children = null,
   ...props

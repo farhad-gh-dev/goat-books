@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
-import { color, typography, screenSize } from "Styles";
+import { typography, screenSize } from "Styles";
 
 const primaryVariantStyle = css`
-  background-color: ${color.primary};
+  background-color: ${(props) => props.theme.color.primary};
   color: ${(props) => props.theme.color.text_color_inverted};
   box-shadow: none;
 
