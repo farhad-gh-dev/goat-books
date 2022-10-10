@@ -1,21 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { typography, screenSize } from "Styles";
-
-/*Use font weight types*/
-const fontWeightProps = css<{ fontWeight?: string }>`
-  ${(props) =>
-    props.fontWeight === "light" ||
-    "regular" ||
-    "medium" ||
-    "semi_bold" ||
-    "bold"
-      ? `
-    font-weight: ${
-      typography.weight[props.fontWeight as keyof typeof typography.weight]
-    };
-    `
-      : `font-weight: ${props.fontWeight}`};
-`;
+import { selectFontWeight } from "Styles/mixins";
 
 export const StyledParagraph = styled.p<{
   isInline?: boolean;
@@ -47,7 +32,7 @@ export const StyledParagraph = styled.p<{
     }
     `};
 
-  ${fontWeightProps};
+  ${(props) => props.fontWeight && selectFontWeight(props.fontWeight)};
 
   ${(props) =>
     props.textTransform &&
