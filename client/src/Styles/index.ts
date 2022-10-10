@@ -63,6 +63,7 @@ export const themes = {
     name: "light",
     color: {
       primary: "#3FC282",
+      secondary: "#0090A6",
       background: "#ffffff",
       text_color: "#000000",
       text_color_inverted: "#ffffff",
@@ -73,6 +74,7 @@ export const themes = {
     name: "dark",
     color: {
       primary: "#3FC282",
+      secondary: "#0090A6",
       background: "#000000",
       text_color: "#ffffff",
       text_color_inverted: "#000000",
