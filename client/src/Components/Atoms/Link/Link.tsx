@@ -1,14 +1,12 @@
 import React from "react";
 import { StyledLink } from "./Link.styled";
 
-export type Props = {} & React.ComponentProps<"a">;
+export type LinkProps = {} & React.ComponentProps<"a">;
 
-const Link: React.FC<Props> = ({ children, ref, ...props }) => {
+export const Link: React.FC<LinkProps> = ({ children, ref, ...props }) => {
   return (
     <StyledLink tabIndex={0} {...props}>
       {children}
     </StyledLink>
   );
 };
-
-export default Link;

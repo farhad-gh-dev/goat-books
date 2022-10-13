@@ -1,14 +1,14 @@
 import React from "react";
 import { StyledParagraph, StyledSpan } from "./Text.styled";
 
-export type namedFontWeightTypes =
+type namedFontWeightTypes =
   | "light"
   | "regular"
   | "medium"
   | "semi-bold"
   | "bold";
 
-export type Props = {
+export type TextProps = {
   isInline?: boolean;
   isSpan?: boolean;
   size?: "sm" | "md" | "lg";
@@ -18,7 +18,7 @@ export type Props = {
 } & React.ComponentProps<"p"> &
   React.ComponentProps<"span">;
 
-const Text: React.FC<Props> = ({
+export const Text: React.FC<TextProps> = ({
   isSpan = false,
   children = null,
   ...props
@@ -30,5 +30,3 @@ const Text: React.FC<Props> = ({
 
   return <TextType {...props}>{children}</TextType>;
 };
-
-export default Text;

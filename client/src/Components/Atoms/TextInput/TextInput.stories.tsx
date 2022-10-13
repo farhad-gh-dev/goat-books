@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import TextInput from "./TextInput";
+import { TextInput } from "./TextInput";
 
 export default {
   title: "Atoms/TextInput",
@@ -23,4 +23,11 @@ export const Default = Template.bind({});
 Default.args = {
   label: "username",
   name: "username",
+};
+
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  label: "username",
+  name: "username",
+  fullWidth: true,
 };

@@ -1,14 +1,14 @@
 import React from "react";
 import { StyledH1, StyledH2, StyledH3 } from "./Heading.style";
 
-export type namedFontWeightTypes =
+type namedFontWeightTypes =
   | "light"
   | "regular"
   | "medium"
   | "semi-bold"
   | "bold";
 
-export type Props = {
+export type HeadingProps = {
   /**
    * Accept a value between 0 and 1 -> EX: 0.5
    */
@@ -19,7 +19,13 @@ export type Props = {
   h3?: boolean;
 } & React.ComponentProps<"h1">;
 
-const Heading: React.FC<Props> = ({ h1, h2, h3, children, ...props }) => {
+export const Heading: React.FC<HeadingProps> = ({
+  h1,
+  h2,
+  h3,
+  children,
+  ...props
+}) => {
   let HeadingType: any = StyledH3;
   if (h1) HeadingType = StyledH1;
   if (h2) HeadingType = StyledH2;
@@ -27,5 +33,3 @@ const Heading: React.FC<Props> = ({ h1, h2, h3, children, ...props }) => {
 
   return <HeadingType {...props}>{children}</HeadingType>;
 };
-
-export default Heading;

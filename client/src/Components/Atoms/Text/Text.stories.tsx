@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Text from "./Text";
+import { Text } from "./Text";
 
 export default {
   title: "Atoms/Text",
@@ -11,8 +11,8 @@ const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />;
 
 const defaultText = "This is a sample paragraph";
 
-export const SimpleText = Template.bind({});
-SimpleText.args = {
+export const SampleText = Template.bind({});
+SampleText.args = {
   children: defaultText,
 };
 

@@ -1,33 +1,44 @@
 import React from "react";
-import { StyledTextInput, Input, Label } from "./TextInput.styled";
+import {
+  StyledTextInput,
+  InputContainer,
+  Input,
+  Label,
+} from "./TextInput.styled";
 
-export type Props = {
+export type TextInputProps = {
   label?: string;
   name?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  fullWidth?: boolean;
 } & React.ComponentProps<"input">;
 
-const TextInput: React.FC<Props> = ({
+export const TextInput: React.FC<TextInputProps> = ({
   label,
   name,
   value,
   onChange = (e) => console.log(e.target.value),
+  className,
+  fullWidth,
   ref,
   ...props
 }) => {
   return (
-    <StyledTextInput hasValue={value !== ""}>
-      <Label htmlFor={name}>{label}</Label>
-      <Input
-        type="text"
-        name={name}
-        value={value}
-        onChange={onChange}
-        {...props}
-      />
+    <StyledTextInput className={className}>
+      <InputContainer hasValue={value !== ""}>
+        <Label htmlFor={name}>{label}</Label>
+        <Input
+          type={
+            label === "password" || name === "password" ? "password" : "text"
+          }
+          name={name}
+          value={value}
+          onChange={onChange}
+          fullWidth={fullWidth}
+          {...props}
+        />
+      </InputContainer>
     </StyledTextInput>
   );
 };
-
-export default TextInput;

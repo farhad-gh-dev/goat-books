@@ -3,13 +3,17 @@ import LogoLight from "Assets/logo-light-64.png";
 import LogoDark from "Assets/logo-dark-64.png";
 import { StyledBrandLogo, LogoImage, BrandTitle } from "./BrandLogo.styled";
 
-export type Props = {
+export type BrandLogoProps = {
   isDark?: boolean;
   imageOnly?: boolean;
   className?: string;
 };
 
-const BrandLogo: React.FC<Props> = ({ isDark, imageOnly, className = "" }) => {
+export const BrandLogo: React.FC<BrandLogoProps> = ({
+  isDark,
+  imageOnly,
+  className = "",
+}) => {
   return (
     <StyledBrandLogo
       isDark={isDark}
@@ -29,5 +33,3 @@ const BrandLogo: React.FC<Props> = ({ isDark, imageOnly, className = "" }) => {
     </StyledBrandLogo>
   );
 };
-
-export default BrandLogo;

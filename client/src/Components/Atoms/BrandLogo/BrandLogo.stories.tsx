@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import BrandLogo from "./BrandLogo";
+import { BrandLogo } from "./BrandLogo";
 
 export default {
   title: "Atoms/Brand Logo",
@@ -22,7 +22,7 @@ const Template: ComponentStory<typeof BrandLogo> = (args) => {
   );
 };
 
-export const Standard = Template.bind({});
+export const Default = Template.bind({});
 
 export const ImageOnly = Template.bind({});
 ImageOnly.args = {

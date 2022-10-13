@@ -7,6 +7,14 @@ const hasValueProps = css`
   opacity: 0.65;
 `;
 
+const fullWidthProps = css`
+  width: 100%;
+`;
+
+export const StyledTextInput = styled.div`
+  padding-top: 25px;
+`;
+
 export const Label = styled.label`
   position: absolute;
   left: 0;
@@ -22,7 +30,7 @@ export const Label = styled.label`
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{ fullWidth?: boolean }>`
   position: relative;
   width: 300px;
   padding: 12px;
@@ -40,11 +48,12 @@ export const Input = styled.input`
     padding: 15px;
     font-size: ${typography.size.text_16};
   }
+
+  ${(props) => props.fullWidth && fullWidthProps}
 `;
 
-export const StyledTextInput = styled.div<{ hasValue?: boolean }>`
+export const InputContainer = styled.div<{ hasValue?: boolean }>`
   position: relative;
-  margin-top: 25px;
 
   /* for some reason if font-size is in hasValueProps it will bug out! ¯\_(ツ)_/¯*/
   ${(props) =>
