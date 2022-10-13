@@ -4,6 +4,7 @@ import { StyledButton } from "./Button.styled";
 export type Props = {
   variant?: "primary";
   fullWidth?: boolean;
+  overflowEllipsis?: boolean;
   className?: string;
 } & React.ComponentProps<"button">;
 

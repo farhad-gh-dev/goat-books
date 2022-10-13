@@ -11,11 +11,22 @@ const primaryVariantStyle = css`
   }
 `;
 
+const overflowEllipsisProps = css`
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 // add theme color to box
 export const StyledButton = styled.button<{
   variant?: "primary";
   fullWidth?: boolean;
+  overflowEllipsis?: boolean;
 }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 45px;
   padding: 0 10px;
   font-size: ${typography.size.text_16};
@@ -24,9 +35,6 @@ export const StyledButton = styled.button<{
   background-color: ${(props) => props.theme.color.background};
   color: ${(props) => props.theme.color.text_color};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.24);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   cursor: pointer;
   transition: 0.2s ease-in-out;
 
@@ -49,4 +57,6 @@ export const StyledButton = styled.button<{
   ${(props) => props.variant === "primary" && primaryVariantStyle};
 
   ${(props) => props.fullWidth && `width: 100%`};
+
+  ${(props) => props.overflowEllipsis && overflowEllipsisProps};
 `;

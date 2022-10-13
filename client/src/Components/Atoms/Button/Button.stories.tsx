@@ -38,8 +38,9 @@ Disabled.args = {
   disabled: true,
 };
 
-export const LongLabel = Template.bind({});
-LongLabel.args = {
+export const LongLabelEllipsis = Template.bind({});
+LongLabelEllipsis.args = {
   children: "Long Label",
   style: { width: "100px" },
+  overflowEllipsis: true,
 };
