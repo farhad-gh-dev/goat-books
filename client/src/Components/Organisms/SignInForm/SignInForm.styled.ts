@@ -11,9 +11,11 @@ export const StyledSignInForm = styled.div`
 
   .heading {
     margin-bottom: 32px;
+    text-align: center;
 
     ${screenSize.laptop} {
       margin-bottom: 42px;
+      text-align: left;
     }
   }
 

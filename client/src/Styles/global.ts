@@ -100,7 +100,7 @@ export const bodyStyles = css`
 
 const AppBodyStyles = css`
   ${bodyStyles}
-  color: ${(props) => props.theme.color.primary};
+  color: ${(props) => props.theme.color.text_color};
 
   hr {
     border-top: 1px solid ${(props) => props.theme.color.contrast};
