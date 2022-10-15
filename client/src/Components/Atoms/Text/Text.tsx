@@ -14,6 +14,7 @@ export type TextProps = {
   size?: "sm" | "md" | "lg";
   fontWeight?: namedFontWeightTypes | "300" | "400" | "500" | "600" | "700";
   textTransform?: "uppercase" | "capitalize" | "lowercase" | "none";
+  textAlign?: "left" | "center" | "right";
   overflowEllipsis?: boolean;
 } & React.ComponentProps<"p"> &
   React.ComponentProps<"span">;

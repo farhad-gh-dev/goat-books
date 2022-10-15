@@ -8,6 +8,7 @@ export const StyledParagraph = styled.p<{
   size?: string;
   fontWeight?: string;
   textTransform?: string;
+  textAlign?: string;
   overflowEllipsis?: string;
 }>`
   display: block;
@@ -38,6 +39,12 @@ export const StyledParagraph = styled.p<{
     props.textTransform &&
     `
     text-transform: ${props.textTransform};
+    `};
+
+  ${(props) =>
+    props.textAlign &&
+    `
+    text-align: ${props.textAlign};
     `};
 
   ${(props) =>
