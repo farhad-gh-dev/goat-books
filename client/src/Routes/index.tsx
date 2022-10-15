@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Text from "Components/Atoms/Text/Text";
+import { Text } from "Components";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 const auth = { isLoading: false, user: false };

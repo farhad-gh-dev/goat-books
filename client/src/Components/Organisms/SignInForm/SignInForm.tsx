@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Heading, TextInput, Link, Text } from "Components/index";
+import { Heading, TextInput, Link, Text } from "Components";
 import {
   StyledSignInForm,
   GoogleImage,
