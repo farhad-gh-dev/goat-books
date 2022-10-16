@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Text } from "Components";
+import { Text, SignInForm } from "Components";
 import ProtectedRoutes from "./ProtectedRoutes";
-import { SignIn } from "../Pages/SignIn/SignIn";
+import Auth from "./Auth/Auth";
 
 const auth = { isLoading: false, user: false };
 
@@ -11,7 +11,12 @@ const AppRoutes: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/app" />} />
-      <Route path="/auth/sign-in" element={<SignIn />} />
+
+      <Route element={<Auth isAllowed={!auth.user} />}>
+        <Route path="/auth/sign-in" element={<SignInForm />} />
+        <Route path="/auth/sign-up" element={<SignInForm />} />
+      </Route>
+
       <Route element={<ProtectedRoutes isAllowed={auth.user} />}>
         <Route path="/app" element={<Text>app</Text>} />
       </Route>

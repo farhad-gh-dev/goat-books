@@ -1,27 +1,42 @@
 import React from "react";
+import { Outlet, Navigate } from "react-router-dom";
 import { useTheme } from "styled-components";
 import {
-  StyledSignIn,
+  StyledAuth,
   LeftPanel,
   BackgroundImage,
   BrandLogoContainer,
   TextContainer,
   AppDescription,
   AuthPanel,
-} from "./SignIn.styled";
-import { BrandLogo, SignInForm } from "Components";
+} from "./Auth.styled";
+import { BrandLogo } from "Components";
 import SignInBackground from "Assets/sign-in-bg.jpg";
 
-export const SignIn: React.FC = () => {
+export interface Props {
+  isAllowed?: boolean;
+  redirectPath?: string;
+}
+
+const Auth: React.FC<Props> = ({
+  isAllowed = false,
+  redirectPath = "/auth/sign-in",
+}) => {
   const theme: any = useTheme();
 
+  if (!isAllowed) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
   return (
-    <StyledSignIn>
+    <StyledAuth>
       <LeftPanel>
         <BackgroundImage imageSrc={SignInBackground} />
+
         <BrandLogoContainer>
           <BrandLogo isDark={theme.name !== "dark"} />
         </BrandLogoContainer>
+
         <TextContainer>
           <AppDescription textAlign="center" size="lg" fontWeight="semi-bold">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -33,9 +48,12 @@ export const SignIn: React.FC = () => {
           </AppDescription>
         </TextContainer>
       </LeftPanel>
+
       <AuthPanel>
-        <SignInForm />
+        <Outlet />
       </AuthPanel>
-    </StyledSignIn>
+    </StyledAuth>
   );
 };
+
+export default Auth;

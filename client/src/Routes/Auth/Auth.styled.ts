@@ -9,7 +9,7 @@ const imageSrcProps = css<{ imageSrc?: string }>`
   background-position: center center;
 `;
 
-export const StyledSignIn = styled.div`
+export const StyledAuth = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
