@@ -45,6 +45,7 @@ export const SignInForm: React.FC<Props> = () => {
         className="text-input"
       />
       <TextInput
+        isPassword
         label="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}

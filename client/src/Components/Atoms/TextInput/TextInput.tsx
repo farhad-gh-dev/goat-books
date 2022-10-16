@@ -7,6 +7,7 @@ import {
 } from "./TextInput.styled";
 
 export type TextInputProps = {
+  isPassword?: boolean;
   label?: string;
   name?: string;
   value?: string;
@@ -15,6 +16,7 @@ export type TextInputProps = {
 } & React.ComponentProps<"input">;
 
 export const TextInput: React.FC<TextInputProps> = ({
+  isPassword,
   label,
   name,
   value,
@@ -29,9 +31,7 @@ export const TextInput: React.FC<TextInputProps> = ({
       <InputContainer hasValue={value !== ""}>
         <Label htmlFor={name}>{label}</Label>
         <Input
-          type={
-            label === "password" || name === "password" ? "password" : "text"
-          }
+          type={isPassword ? "password" : "text"}
           name={name}
           value={value}
           onChange={onChange}
