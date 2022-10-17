@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Text, SignInForm } from "Components";
+import { Text, SignInForm, SignUpForm } from "Components";
 import ProtectedRoutes from "./ProtectedRoutes";
 import Auth from "./Auth/Auth";
 
@@ -14,7 +14,7 @@ const AppRoutes: React.FC = () => {
 
       <Route element={<Auth isAllowed={!auth.user} />}>
         <Route path="/auth/sign-in" element={<SignInForm />} />
-        <Route path="/auth/sign-up" element={<SignInForm />} />
+        <Route path="/auth/sign-up" element={<SignUpForm />} />
       </Route>
 
       <Route element={<ProtectedRoutes isAllowed={auth.user} />}>
