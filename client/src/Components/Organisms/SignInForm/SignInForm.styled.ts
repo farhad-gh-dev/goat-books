@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { screenSize, typography } from "Styles";
-import { Button, Text } from "Components";
+import { Button, Text } from "Components/Atoms";
 
-export const StyledSignInForm = styled.div`
+export const StyledSignInForm = styled.form`
   width: 100%;
 
   ${screenSize.laptop} {

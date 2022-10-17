@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Heading, TextInput, Link, Text } from "Components";
+import { Heading, TextInput, Link, Text } from "Components/Atoms";
 import {
   StyledSignInForm,
   GoogleImage,
@@ -10,9 +10,7 @@ import {
 } from "./SignInForm.styled";
 import GoogleLogo from "Assets/google-logo.png";
 
-export type Props = {};
-
-export const SignInForm: React.FC<Props> = () => {
+export const SignInForm: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,7 +31,7 @@ export const SignInForm: React.FC<Props> = () => {
       <GoogleSignInButton onClick={handleSignInWithGoogle} fullWidth>
         <GoogleImage src={GoogleLogo} alt="" />
         <GoogleLoginText textTransform="capitalize" fontWeight="semi-bold">
-          log in with google
+          Sign in with google
         </GoogleLoginText>
       </GoogleSignInButton>
 
@@ -66,7 +64,7 @@ export const SignInForm: React.FC<Props> = () => {
         <Link className="sign-up-link" href="/auth/sign-up">
           Sign up
         </Link>{" "}
-        now
+        now.
       </Text>
     </StyledSignInForm>
   );
