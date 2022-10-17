@@ -31,7 +31,7 @@ export const StyledSignUpForm = styled.form`
     }
   }
 
-  .sign-up-link {
+  .sign-in-link {
     font-weight: ${typography.weight["semi-bold"]};
   }
 `;

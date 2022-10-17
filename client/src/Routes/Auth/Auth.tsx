@@ -18,10 +18,7 @@ export interface Props {
   redirectPath?: string;
 }
 
-const Auth: React.FC<Props> = ({
-  isAllowed = false,
-  redirectPath = "/auth/sign-in",
-}) => {
+const Auth: React.FC<Props> = ({ isAllowed = false, redirectPath = "/" }) => {
   const theme: any = useTheme();
 
   if (!isAllowed) {

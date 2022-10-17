@@ -9,7 +9,7 @@ export interface Props {
 
 const ProtectedRoutes: React.FC<Props> = ({
   isAllowed = false,
-  redirectPath = "/auth/sign-in",
+  redirectPath = "/",
   children,
 }) => {
   if (!isAllowed) {
