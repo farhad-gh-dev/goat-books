@@ -27,15 +27,19 @@ export const TextInput: React.FC<TextInputProps> = ({
   ...props
 }) => {
   return (
-    <StyledTextInput className={className}>
+    <StyledTextInput
+      className={className}
+      fullWidth={fullWidth}
+      hasValue={value !== ""}
+    >
       <InputContainer hasValue={value !== ""}>
         <Label htmlFor={name}>{label}</Label>
         <Input
           type={isPassword ? "password" : "text"}
           name={name}
           value={value}
+          hasValue={value !== ""}
           onChange={onChange}
-          fullWidth={fullWidth}
           {...props}
         />
       </InputContainer>

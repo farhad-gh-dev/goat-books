@@ -11,8 +11,14 @@ const fullWidthProps = css`
   width: 100%;
 `;
 
-export const StyledTextInput = styled.div`
-  padding-top: 25px;
+export const StyledTextInput = styled.div<{
+  hasValue?: boolean;
+  fullWidth?: boolean;
+}>`
+  width: 300px;
+  padding-top: 20px;
+
+  ${(props) => props.fullWidth && fullWidthProps}
 `;
 
 export const Label = styled.label`
@@ -30,18 +36,23 @@ export const Label = styled.label`
   }
 `;
 
-export const Input = styled.input<{ fullWidth?: boolean }>`
+export const Input = styled.input<{ hasValue?: boolean }>`
   position: relative;
-  width: 300px;
+  width: 100%;
   padding: 12px;
   font-size: ${typography.size.text_14};
   background-color: transparent;
   color: ${(props) => props.theme.color.text_color};
-  border-bottom: 1px solid ${(props) => `${props.theme.color.contrast}30`};
+  border: 2px solid transparent;
+  box-sizing: border-box;
   z-index: 1;
 
   &:focus {
-    outline-color: ${(props) => `${props.theme.color.secondary}85`};
+    outline: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    border-color: ${(props) =>
+      props.hasValue ? `${props.theme.color.secondary}CC` : `black`};
   }
 
   ${screenSize.laptop} {
@@ -49,16 +60,22 @@ export const Input = styled.input<{ fullWidth?: boolean }>`
     font-size: ${typography.size.text_16};
   }
 
-  ${(props) => props.fullWidth && fullWidthProps}
+  ${(props) =>
+    props.hasValue &&
+    `border: 2px solid ${props.theme.color.secondary}CC; border-radius: 5px;`}
 `;
 
 export const InputContainer = styled.div<{ hasValue?: boolean }>`
   position: relative;
+  border-bottom: 1px solid ${(props) => `${props.theme.color.contrast}30`};
 
   /* for some reason if font-size is in hasValueProps it will bug out! ¯\_(ツ)_/¯*/
   ${(props) =>
     props.hasValue
-      ? `${Label} {
+      ? `
+        border-color: transparent;
+
+        ${Label} {
           ${hasValueProps};
           font-size: ${typography.size.text_12};
 
@@ -67,6 +84,8 @@ export const InputContainer = styled.div<{ hasValue?: boolean }>`
           }
         }`
       : `&:focus-within {
+          border-color: transparent;
+
           ${Label} {
             ${hasValueProps};
             font-size: ${typography.size.text_12};
