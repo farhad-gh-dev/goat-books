@@ -30,7 +30,7 @@ const Auth: React.FC<Props> = ({ isAllowed = false, redirectPath = "/" }) => {
       <LeftPanel>
         <BackgroundImage imageSrc={SignInBackground} />
 
-        <BrandLogoContainer>
+        <BrandLogoContainer href="/">
           <BrandLogo isDark={theme.name !== "dark"} />
         </BrandLogoContainer>
 

@@ -49,7 +49,7 @@ export const BackgroundImage = styled.div<{ imageSrc?: string }>`
   }
 `;
 
-export const BrandLogoContainer = styled.div`
+export const BrandLogoContainer = styled.a`
   position: absolute;
   top: 60px;
   left: 60px;
