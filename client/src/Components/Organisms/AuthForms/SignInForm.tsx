@@ -48,12 +48,12 @@ export const SignInForm: React.FC = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         fullWidth
-        className="text-input"
+        className="text-input additional-margin"
       />
 
-      <ResetPasswordContainer>
+      {/* <ResetPasswordContainer>
         <Link href="/auth/reset-password">Forgot Password</Link>
-      </ResetPasswordContainer>
+      </ResetPasswordContainer> */}
 
       <SubmitButton onClick={handleSignIn} variant="primary" fullWidth>
         Sign In

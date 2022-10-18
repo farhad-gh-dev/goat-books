@@ -26,8 +26,12 @@ export const StyledAuthForm = styled.form`
       margin-bottom: 24px;
     }
 
-    &.last-item {
+    &.additional-margin {
       margin-bottom: 86px;
+
+      ${screenSize.laptop} {
+        margin-bottom: 94px;
+      }
     }
   }
 
@@ -40,7 +44,7 @@ export const GoogleAuthButton = styled(Button)`
   margin-bottom: 24px;
 
   ${screenSize.laptop} {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
 `;
 

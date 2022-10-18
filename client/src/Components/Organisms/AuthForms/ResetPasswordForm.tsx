@@ -31,7 +31,7 @@ export const ResetPasswordForm: React.FC = () => {
         value={passwordRepeat}
         onChange={(e) => setPasswordRepeat(e.target.value)}
         fullWidth
-        className="text-input last-item"
+        className="text-input additional-margin"
       />
 
       <SubmitButton onClick={handleSetNewPassword} variant="primary" fullWidth>
