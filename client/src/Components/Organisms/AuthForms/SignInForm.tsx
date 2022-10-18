@@ -5,7 +5,6 @@ import {
   GoogleImage,
   GoogleAuthButton,
   GoogleAuthText,
-  ResetPasswordContainer,
   SubmitButton,
 } from "./AuthForms.styled";
 import GoogleLogo from "Assets/google-logo.png";
@@ -18,7 +17,9 @@ export const SignInForm: React.FC = () => {
     console.log("google sign-in clicked...");
   };
 
-  const handleSignIn = () => {
+  const handleSignIn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+
     console.log("sign-in btn clicked...");
   };
 
@@ -28,7 +29,11 @@ export const SignInForm: React.FC = () => {
         Welcome back
       </Heading>
 
-      <GoogleAuthButton onClick={handleSignInWithGoogle} fullWidth>
+      <GoogleAuthButton
+        type="button"
+        onClick={handleSignInWithGoogle}
+        fullWidth
+      >
         <GoogleImage src={GoogleLogo} alt="" />
         <GoogleAuthText textTransform="capitalize" fontWeight="semi-bold">
           Sign in with google
@@ -51,11 +56,12 @@ export const SignInForm: React.FC = () => {
         className="text-input additional-margin"
       />
 
-      {/* <ResetPasswordContainer>
-        <Link href="/auth/reset-password">Forgot Password</Link>
-      </ResetPasswordContainer> */}
-
-      <SubmitButton onClick={handleSignIn} variant="primary" fullWidth>
+      <SubmitButton
+        type="submit"
+        onClick={handleSignIn}
+        variant="primary"
+        fullWidth
+      >
         Sign In
       </SubmitButton>
 

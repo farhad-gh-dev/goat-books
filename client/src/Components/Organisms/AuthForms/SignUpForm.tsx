@@ -18,7 +18,8 @@ export const SignUpForm: React.FC = () => {
     console.log("google sign-Up clicked...");
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
     console.log("sign-Up btn clicked...");
   };
 
@@ -28,7 +29,11 @@ export const SignUpForm: React.FC = () => {
         Hello, friend
       </Heading>
 
-      <GoogleAuthButton onClick={handleSignUpWithGoogle} fullWidth>
+      <GoogleAuthButton
+        type="button"
+        onClick={handleSignUpWithGoogle}
+        fullWidth
+      >
         <GoogleImage src={GoogleLogo} alt="" />
         <GoogleAuthText textTransform="capitalize" fontWeight="semi-bold">
           Sign up with google
@@ -60,7 +65,12 @@ export const SignUpForm: React.FC = () => {
         className="text-input additional-margin"
       />
 
-      <SubmitButton onClick={handleSignUp} variant="primary" fullWidth>
+      <SubmitButton
+        type="submit"
+        onClick={handleSignUp}
+        variant="primary"
+        fullWidth
+      >
         Sign Up
       </SubmitButton>
 

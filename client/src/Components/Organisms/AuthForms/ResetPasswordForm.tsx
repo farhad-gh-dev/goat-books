@@ -6,7 +6,11 @@ export const ResetPasswordForm: React.FC = () => {
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
 
-  const handleSetNewPassword = () => {
+  const handleSetNewPassword = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+
     console.log("submit btn clicked...");
   };
 
@@ -34,7 +38,12 @@ export const ResetPasswordForm: React.FC = () => {
         className="text-input additional-margin"
       />
 
-      <SubmitButton onClick={handleSetNewPassword} variant="primary" fullWidth>
+      <SubmitButton
+        type="submit"
+        onClick={handleSetNewPassword}
+        variant="primary"
+        fullWidth
+      >
         Submit
       </SubmitButton>
     </StyledAuthForm>
