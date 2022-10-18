@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { screenSize, typography } from "Styles";
 import { Button, Text } from "Components/Atoms";
 
-export const StyledSignUpForm = styled.form`
+export const StyledAuthForm = styled.form`
   width: 100%;
 
   ${screenSize.laptop} {
@@ -31,12 +31,12 @@ export const StyledSignUpForm = styled.form`
     }
   }
 
-  .sign-in-link {
+  .redirect-link {
     font-weight: ${typography.weight["semi-bold"]};
   }
 `;
 
-export const GoogleSignUpButton = styled(Button)`
+export const GoogleAuthButton = styled(Button)`
   margin-bottom: 24px;
 
   ${screenSize.laptop} {
@@ -55,7 +55,7 @@ export const GoogleImage = styled.img`
   }
 `;
 
-export const GoogleLoginText = styled(Text)`
+export const GoogleAuthText = styled(Text)`
   font-size: ${typography.size.text_14};
 
   ${screenSize.laptop} {
@@ -63,7 +63,12 @@ export const GoogleLoginText = styled(Text)`
   }
 `;
 
-export const SignUpButton = styled(Button)`
+export const ResetPasswordContainer = styled.div`
+  text-align: right;
+  margin-bottom: 70px;
+`;
+
+export const SubmitButton = styled(Button)`
   font-size: ${typography.size.text_18};
   margin-bottom: 12px;
 

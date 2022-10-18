@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Heading, TextInput } from "Components/Atoms";
-import {
-  StyledResetPasswordForm,
-  SubmitButton,
-} from "./ResetPasswordForm.styled";
+import { StyledAuthForm, SubmitButton } from "./AuthForms.styled";
 
 export const ResetPasswordForm: React.FC = () => {
   const [password, setPassword] = useState("");
@@ -14,7 +11,7 @@ export const ResetPasswordForm: React.FC = () => {
   };
 
   return (
-    <StyledResetPasswordForm>
+    <StyledAuthForm>
       <Heading h2 fontWeight="regular" className="heading">
         Reset your password
       </Heading>
@@ -40,6 +37,6 @@ export const ResetPasswordForm: React.FC = () => {
       <SubmitButton onClick={handleSetNewPassword} variant="primary" fullWidth>
         Submit
       </SubmitButton>
-    </StyledResetPasswordForm>
+    </StyledAuthForm>
   );
 };

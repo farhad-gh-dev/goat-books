@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Heading, TextInput, Link, Text } from "Components/Atoms";
 import {
-  StyledSignInForm,
+  StyledAuthForm,
   GoogleImage,
-  GoogleSignInButton,
-  GoogleLoginText,
+  GoogleAuthButton,
+  GoogleAuthText,
   ResetPasswordContainer,
-  SignInButton,
-} from "./SignInForm.styled";
+  SubmitButton,
+} from "./AuthForms.styled";
 import GoogleLogo from "Assets/google-logo.png";
 
 export const SignInForm: React.FC = () => {
@@ -23,17 +23,17 @@ export const SignInForm: React.FC = () => {
   };
 
   return (
-    <StyledSignInForm>
+    <StyledAuthForm>
       <Heading h2 fontWeight="regular" className="heading">
         Welcome back
       </Heading>
 
-      <GoogleSignInButton onClick={handleSignInWithGoogle} fullWidth>
+      <GoogleAuthButton onClick={handleSignInWithGoogle} fullWidth>
         <GoogleImage src={GoogleLogo} alt="" />
-        <GoogleLoginText textTransform="capitalize" fontWeight="semi-bold">
+        <GoogleAuthText textTransform="capitalize" fontWeight="semi-bold">
           Sign in with google
-        </GoogleLoginText>
-      </GoogleSignInButton>
+        </GoogleAuthText>
+      </GoogleAuthButton>
 
       <TextInput
         label="username"
@@ -55,17 +55,17 @@ export const SignInForm: React.FC = () => {
         <Link href="/auth/reset-password">Forgot Password</Link>
       </ResetPasswordContainer>
 
-      <SignInButton onClick={handleSignIn} variant="primary" fullWidth>
+      <SubmitButton onClick={handleSignIn} variant="primary" fullWidth>
         Sign In
-      </SignInButton>
+      </SubmitButton>
 
       <Text size="lg">
         Don’t have an account?{" "}
-        <Link className="sign-up-link" href="/auth/sign-up">
+        <Link className="redirect-link" href="/auth/sign-up">
           Sign up
         </Link>{" "}
         now.
       </Text>
-    </StyledSignInForm>
+    </StyledAuthForm>
   );
 };
