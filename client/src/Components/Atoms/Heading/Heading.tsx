@@ -14,6 +14,7 @@ export type HeadingProps = {
    */
   textTransform?: "uppercase" | "capitalize" | "lowercase" | "none";
   fontWeight?: namedFontWeightTypes | "300" | "400" | "500" | "600" | "700";
+  overflowEllipsis?: boolean;
   h1?: boolean;
   h2?: boolean;
   h3?: boolean;

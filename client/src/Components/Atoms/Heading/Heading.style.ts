@@ -5,6 +5,7 @@ import { selectFontWeight } from "Styles/mixins";
 export const StyledH1 = styled.h1<{
   fontWeight?: string;
   textTransform?: string;
+  overflowEllipsis?: boolean;
 }>`
   color: ${(props) => props.theme.color.text_color};
   font-size: ${typography.size.text_26};
@@ -19,6 +20,14 @@ export const StyledH1 = styled.h1<{
     `
     text-transform: ${props.textTransform};
     `};
+
+  ${(props) =>
+    props.overflowEllipsis &&
+    `
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    `};
 `;
 
 export const StyledH2 = styled(StyledH1).attrs({ as: "h2" })`
@@ -29,8 +38,8 @@ export const StyledH2 = styled(StyledH1).attrs({ as: "h2" })`
 `;
 
 export const StyledH3 = styled(StyledH1).attrs({ as: "h3" })`
-  font-size: ${typography.size.text_20};
+  font-size: ${typography.size.text_16};
   ${screenSize.laptop} {
-    font-size: ${typography.size.text_26};
+    font-size: ${typography.size.text_20};
   }
 `;
