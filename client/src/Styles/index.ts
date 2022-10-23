@@ -68,6 +68,7 @@ export const themes = {
       text_color: "#000000",
       text_color_inverted: "#ffffff",
       contrast: "#000000",
+      red: "#F30E23",
     },
   },
   dark: {
@@ -79,6 +80,7 @@ export const themes = {
       text_color: "#ffffff",
       text_color_inverted: "#000000",
       contrast: "#ffffff",
+      red: "#F30E23",
     },
   },
 };
