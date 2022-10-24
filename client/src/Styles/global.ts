@@ -64,6 +64,7 @@ export const bodyStyles = css`
   button {
     padding: 0;
     background-color: transparent;
+    cursor: pointer;
   }
 
   a {
