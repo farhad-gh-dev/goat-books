@@ -3,18 +3,17 @@ import { ThemeProvider } from "styled-components";
 import { themes } from "Styles";
 import type { AppTheme } from "Styles/types";
 
-const AppThemeContext = createContext({});
-
 interface Props {
   children?: React.ReactNode;
 }
 
+const AppThemeContext = createContext({});
+
 const getSelectedTheme = (): AppTheme => {
-  const localTheme = localStorage.getItem("theme");
+  const localTheme: any = localStorage.getItem("theme");
   if (localTheme) {
-    const parsedLocalTheme = JSON.parse(localTheme);
-    const isValidTheme = Object.keys(themes).includes(parsedLocalTheme);
-    if (isValidTheme) return parsedLocalTheme;
+    const isValidTheme = Object.keys(themes).includes(localTheme);
+    if (isValidTheme) return localTheme;
   }
 
   const isDarkPreferredTheme = window.matchMedia(
@@ -23,7 +22,7 @@ const getSelectedTheme = (): AppTheme => {
   return isDarkPreferredTheme ? "dark" : "light";
 };
 
-export const AppThemeProvider: React.FC<Props> = ({ children = null }) => {
+export const AppThemeProvider: React.FC<Props> = ({ children }) => {
   const [activeTheme, setActiveTheme] = useState<AppTheme>(() =>
     getSelectedTheme()
   );
