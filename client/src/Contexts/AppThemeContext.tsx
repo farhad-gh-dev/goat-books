@@ -3,11 +3,15 @@ import { ThemeProvider } from "styled-components";
 import { themes } from "Styles";
 import type { AppTheme } from "Styles/types";
 
+export interface AppThemeContextType {
+  setAppTheme: (themeName: AppTheme) => void;
+}
+
 interface Props {
   children?: React.ReactNode;
 }
 
-const AppThemeContext = createContext({});
+export const AppThemeContext = createContext({});
 
 const getSelectedTheme = (): AppTheme => {
   const localTheme: any = localStorage.getItem("theme");
