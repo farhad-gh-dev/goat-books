@@ -31,6 +31,8 @@ export const All = () => {
       <Template type="ribbon-filled" color="red" />
       <WhiteSpace />
       <Template type="search" />
+      <WhiteSpace />
+      <Template type="arrow" />
     </div>
   );
 };

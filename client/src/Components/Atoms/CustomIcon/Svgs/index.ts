@@ -5,3 +5,4 @@ export * from "./DislikeFilled";
 export * from "./Ribbon";
 export * from "./RibbonFilled";
 export * from "./Search";
+export * from "./Arrow";

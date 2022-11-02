@@ -8,6 +8,7 @@ import {
   Ribbon as RibbonIcon,
   RibbonFilled as RibbonFilledIcon,
   Search as SearchIcon,
+  Arrow as ArrowIcon,
 } from "./Svgs";
 
 export type IconTypes =
@@ -17,7 +18,8 @@ export type IconTypes =
   | "dislike-filled"
   | "ribbon"
   | "ribbon-filled"
-  | "search";
+  | "search"
+  | "arrow";
 
 export type CustomIconProps = {
   type?: IconTypes;
@@ -60,6 +62,8 @@ const TargetIcon: React.FC<{ type?: IconTypes }> = ({ type = "" }) => {
       return <RibbonFilledIcon />;
     case "search":
       return <SearchIcon />;
+    case "arrow":
+      return <ArrowIcon />;
     default:
       return null;
   }
