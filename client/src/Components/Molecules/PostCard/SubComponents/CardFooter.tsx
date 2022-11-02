@@ -53,7 +53,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
         <RatingIconContainer>
           <button onClick={onLike}>
             {isLiked ? (
-              <CustomIcon type="like-filled" />
+              <CustomIcon type="like-filled" color="red" />
             ) : (
               <CustomIcon type="like" />
             )}

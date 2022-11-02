@@ -109,5 +109,5 @@ export const dummyData = [
     numOfDislikes: 0,
     isSaved: true,
   },
-  {},
+  { id: "none" },
 ];
