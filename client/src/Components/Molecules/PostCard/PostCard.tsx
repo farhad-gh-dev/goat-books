@@ -1,24 +1,22 @@
 import React from "react";
 import { StyledPostCard } from "./PostCard.styled";
-import type { UserPost } from "./types";
 import { CardHeader } from "./SubComponents/CardHeader";
 import { CardBody } from "./SubComponents/CardBody";
 import { CardFooter } from "./SubComponents/CardFooter";
+import type { UserPost } from "./Types";
 
 type PostCardProps = {
   postData?: UserPost;
-  isSaved?: boolean;
-  userName?: string;
-  isLiked?: boolean;
-  isDisliked?: boolean;
+  onSave?: () => void;
+  onLike?: () => void;
+  onDislike?: () => void;
 };
 
 export const PostCard: React.FC<PostCardProps> = ({
   postData = {},
-  isSaved,
-  userName,
-  isLiked,
-  isDisliked,
+  onSave = () => {},
+  onLike = () => {},
+  onDislike = () => {},
 }) => {
   const {
     title = "not mentioned",
@@ -28,11 +26,21 @@ export const PostCard: React.FC<PostCardProps> = ({
     date,
     numOfLikes,
     numOfDislikes,
+    isSaved,
+    userName,
+    userAvatar,
+    isLiked,
+    isDisliked,
   } = postData;
 
   return (
     <StyledPostCard>
-      <CardHeader title={title} author={author} isSaved={isSaved} />
+      <CardHeader
+        title={title}
+        author={author}
+        isSaved={isSaved}
+        onSave={onSave}
+      />
 
       <CardBody quote={quote} review={review} />
 
@@ -43,6 +51,9 @@ export const PostCard: React.FC<PostCardProps> = ({
         isDisliked={isDisliked}
         numOfLikes={numOfLikes}
         numOfDislikes={numOfDislikes}
+        userAvatar={userAvatar}
+        onLike={onLike}
+        onDislike={onDislike}
       />
     </StyledPostCard>
   );

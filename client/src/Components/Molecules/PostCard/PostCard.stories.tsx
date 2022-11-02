@@ -1,4 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import styled from "styled-components";
 
 import { PostCard } from "./PostCard";
 
@@ -7,8 +8,14 @@ export default {
   component: PostCard,
 } as ComponentMeta<typeof PostCard>;
 
+const Container = styled.div`
+  max-width: 390px;
+`;
+
 const Template: ComponentStory<typeof PostCard> = (args) => (
-  <PostCard {...args} />
+  <Container>
+    <PostCard {...args} />
+  </Container>
 );
 
 const dummyPostData = {
@@ -19,13 +26,13 @@ const dummyPostData = {
   date: "10/23/2022",
   numOfLikes: 24,
   numOfDislikes: 24,
+  isSaved: true,
+  userName: "harry potter",
 };
 
 export const Default = Template.bind({});
 Default.args = {
   postData: dummyPostData,
-  isSaved: true,
-  userName: "harry potter",
 };
 
 export const Empty = Template.bind({});
@@ -37,9 +44,9 @@ QuoteOnly.args = {
     review: "",
     numOfDislikes: 0,
     numOfLikes: 10,
+    userName: "harry potter",
+    isLiked: true,
   },
-  userName: "harry potter",
-  isLiked: true,
 };
 
 export const ReviewOnly = Template.bind({});
@@ -49,8 +56,8 @@ ReviewOnly.args = {
     quote: "",
     numOfDislikes: 0,
     numOfLikes: 24,
+    userName: "harry potter",
+    isSaved: true,
+    isDisliked: true,
   },
-  userName: "harry potter",
-  isSaved: true,
-  isDisliked: true,
 };

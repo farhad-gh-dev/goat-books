@@ -7,12 +7,14 @@ type CardHeaderProps = {
   title?: string;
   author?: string;
   isSaved?: boolean;
+  onSave?: () => void;
 };
 
 export const CardHeader: React.FC<CardHeaderProps> = ({
   title,
   author,
   isSaved,
+  onSave,
 }) => {
   const theme: any = useTheme();
 
@@ -30,7 +32,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
         <AuthorName>By: {author}</AuthorName>
       </div>
 
-      <SaveButton>
+      <SaveButton onClick={onSave}>
         {isSaved ? (
           <CustomIcon type="ribbon-filled" color={theme.color.primary} />
         ) : (

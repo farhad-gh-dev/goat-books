@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledPostCard = styled.div`
-  width: 390px;
+  width: 100%;
   padding: 24px;
   background-color: ${(props) => props.theme.color.background};
   border-radius: 15px;

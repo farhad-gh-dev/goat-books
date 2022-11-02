@@ -14,8 +14,11 @@ type CardFooterProps = {
   numOfLikes?: number;
   numOfDislikes?: number;
   userName?: string;
+  userAvatar?: string;
   isLiked?: boolean;
   isDisliked?: boolean;
+  onLike?: () => void;
+  onDislike?: () => void;
 };
 
 export const CardFooter: React.FC<CardFooterProps> = ({
@@ -23,13 +26,16 @@ export const CardFooter: React.FC<CardFooterProps> = ({
   numOfLikes,
   numOfDislikes,
   userName,
+  userAvatar,
   isLiked,
   isDisliked,
+  onLike,
+  onDislike,
 }) => {
   return (
     <StyledCardFooter>
       <UserProfile>
-        <UserAvatar />
+        <UserAvatar imageSrc={userAvatar} />
 
         <TextContainer>
           <a href="/">
@@ -45,7 +51,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
 
       <PostRating>
         <RatingIconContainer>
-          <button onClick={() => console.log("test")}>
+          <button onClick={onLike}>
             {isLiked ? (
               <CustomIcon type="like-filled" />
             ) : (
@@ -59,7 +65,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
           ) : null}
         </RatingIconContainer>
         <RatingIconContainer lastItem>
-          <button onClick={() => console.log("test")}>
+          <button onClick={onDislike}>
             {isDisliked ? (
               <CustomIcon type="dislike-filled" />
             ) : (
