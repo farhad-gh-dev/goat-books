@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "styled-components";
 import {
   StyledCardFooter,
   UserAvatar,
@@ -32,6 +33,8 @@ export const CardFooter: React.FC<CardFooterProps> = ({
   onLike,
   onDislike,
 }) => {
+  const theme: any = useTheme();
+
   return (
     <StyledCardFooter>
       <UserProfile>
@@ -53,7 +56,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
         <RatingIconContainer>
           <button onClick={onLike}>
             {isLiked ? (
-              <CustomIcon type="like-filled" color="red" />
+              <CustomIcon type="like-filled" color={theme.color.red} />
             ) : (
               <CustomIcon type="like" />
             )}
