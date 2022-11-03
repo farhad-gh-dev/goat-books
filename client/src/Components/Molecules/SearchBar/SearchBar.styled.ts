@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { screenSize, typography } from "Styles";
 
 export const StyledSearchBar = styled.form`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,7 +72,7 @@ export const ArrowIcon = styled(CustomIcon).attrs({
 })`
   &,
   svg {
-    width: 21;
+    width: 21px;
     height: auto;
 
     ${screenSize.laptop} {

@@ -6,15 +6,17 @@ type Props = {
   userName?: string;
   numberOfPosts?: number;
   profileImage?: string;
+  className?: string;
 };
 
 export const NavProfile: React.FC<Props> = ({
   userName = "",
   numberOfPosts = 0,
   profileImage = "",
+  className,
 }) => {
   return (
-    <StyledNavProfile>
+    <StyledNavProfile className={className}>
       <TextContainer>
         <Text fontWeight="medium" textTransform="capitalize">
           {userName}
@@ -22,6 +24,7 @@ export const NavProfile: React.FC<Props> = ({
 
         {numberOfPosts !== 0 && (
           <Text
+            isSpan
             size="xs"
             fontWeight="medium"
             textTransform="capitalize"

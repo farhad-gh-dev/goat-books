@@ -7,6 +7,7 @@ import type { UserPost } from "./Types";
 
 type PostCardProps = {
   postData?: UserPost;
+  className?: string;
   onSave?: () => void;
   onLike?: () => void;
   onDislike?: () => void;
@@ -14,6 +15,7 @@ type PostCardProps = {
 
 export const PostCard: React.FC<PostCardProps> = ({
   postData = {},
+  className,
   onSave = () => {},
   onLike = () => {},
   onDislike = () => {},
@@ -34,7 +36,7 @@ export const PostCard: React.FC<PostCardProps> = ({
   } = postData;
 
   return (
-    <StyledPostCard>
+    <StyledPostCard className={className}>
       <CardHeader
         title={title}
         author={author}

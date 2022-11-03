@@ -10,10 +10,14 @@ import {
 } from "./SearchBar.styled";
 
 type Props = {
+  className?: string;
   onSubmit?: (searchTerm: string) => void;
 };
 
-export const SearchBar: React.FC<Props> = ({ onSubmit = () => {} }) => {
+export const SearchBar: React.FC<Props> = ({
+  className,
+  onSubmit = () => {},
+}) => {
   const [inputValue, setInputValue] = useState("");
   const theme: any = useTheme();
 
@@ -27,7 +31,11 @@ export const SearchBar: React.FC<Props> = ({ onSubmit = () => {} }) => {
   };
 
   return (
-    <StyledSearchBar onSubmit={handleSubmit} aria-label="search-bar">
+    <StyledSearchBar
+      className={className}
+      aria-label="search-bar"
+      onSubmit={handleSubmit}
+    >
       <InputContainer>
         <SearchIcon />
         <StyledInput
