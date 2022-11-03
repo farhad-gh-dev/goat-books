@@ -11,7 +11,7 @@ type namedFontWeightTypes =
 export type TextProps = {
   isInline?: boolean;
   isSpan?: boolean;
-  size?: "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg";
   fontWeight?: namedFontWeightTypes | "300" | "400" | "500" | "600" | "700";
   textTransform?: "uppercase" | "capitalize" | "lowercase" | "none";
   textAlign?: "left" | "center" | "right";

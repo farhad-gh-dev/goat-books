@@ -25,6 +25,15 @@ export const StyledParagraph = styled.p<{
     `};
 
   ${(props) =>
+    props.size === "xs" &&
+    `
+    font-size: ${typography.size.text_10};
+    ${screenSize.laptop} {
+      font-size: ${typography.size.text_12};
+    }
+    `};
+
+  ${(props) =>
     props.size === "sm" &&
     `
     font-size: ${typography.size.text_12};
