@@ -1,32 +1,23 @@
 import React from "react";
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useTheme } from "styled-components";
 import {
-  StyledAuth,
+  StyledAuthLayout,
   LeftPanel,
   BackgroundImage,
   BrandLogoContainer,
   TextContainer,
   AppDescription,
   AuthPanel,
-} from "./Auth.styled";
+} from "./AuthLayout.styled";
 import { BrandLogo } from "Components";
 import SignInBackground from "Assets/sign-in-bg.jpg";
 
-export interface Props {
-  isAllowed?: boolean;
-  redirectPath?: string;
-}
-
-const Auth: React.FC<Props> = ({ isAllowed = false, redirectPath = "/" }) => {
+export const AuthLayout: React.FC = () => {
   const theme: any = useTheme();
 
-  if (!isAllowed) {
-    return <Navigate to={redirectPath} replace />;
-  }
-
   return (
-    <StyledAuth>
+    <StyledAuthLayout>
       <LeftPanel>
         <BackgroundImage imageSrc={SignInBackground} />
 
@@ -49,8 +40,6 @@ const Auth: React.FC<Props> = ({ isAllowed = false, redirectPath = "/" }) => {
       <AuthPanel>
         <Outlet />
       </AuthPanel>
-    </StyledAuth>
+    </StyledAuthLayout>
   );
 };
-
-export default Auth;
