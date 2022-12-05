@@ -5,11 +5,13 @@ import {
   SignInForm,
   SignUpForm,
   ResetPasswordForm,
+  PostsList,
   AuthLayout,
+  DashboardLayout,
 } from "Components";
 import ProtectedRoutes from "./ProtectedRoutes";
 
-const auth = { isLoading: false, user: false };
+const auth = { isLoading: false, user: true };
 
 const AppRoutes: React.FC = () => {
   if (auth.isLoading) return <Text>Loading...</Text>;
@@ -43,7 +45,9 @@ const AppRoutes: React.FC = () => {
           <ProtectedRoutes isAllowed={auth.user} redirectPath="/auth/sign-in" />
         }
       >
-        <Route path="/app" element={<Text>app</Text>} />
+        <Route element={<DashboardLayout />}>
+          <Route path="/app" element={<PostsList />} />
+        </Route>
       </Route>
       <Route path="*" element={<div>404 page</div>} />
     </Routes>
