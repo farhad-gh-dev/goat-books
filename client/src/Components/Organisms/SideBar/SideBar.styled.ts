@@ -3,20 +3,62 @@ import styled from "styled-components";
 import { screenSize, typography } from "Styles";
 import { hexToRgb } from "Styles/mixins";
 
-export const StyledSideBar = styled.div``;
+export const StyledSideBar = styled.div`
+  height: 100%;
+  background-color: red;
+  box-shadow: 0 0 10px #000;
+`;
 
-export const ContentContainer = styled.div`
+export const ContentContainer = styled.div<{ isOpen?: boolean }>`
+  position: relative;
+  max-width: 300px;
+  height: 100%;
   padding: 21px;
+  background-color: white;
+
+  transition: 0.3s ease-in-out;
 
   ${screenSize.laptop} {
+    max-width: unset;
     padding: 30px;
+    transform: translateX(0);
   }
+
+  ${(props) =>
+    !props.isOpen &&
+    `
+    transform: translateX(-100%);
+  `};
 
   .brand-logo {
     margin-bottom: 32px;
 
     ${screenSize.laptop} {
       margin-bottom: 40px;
+    }
+  }
+`;
+
+export const MenuToggler = styled.div<{ isOpen?: boolean }>`
+  position: absolute;
+  top: 21px;
+  right: 21px;
+  transition: 0.3s ease-in-out;
+
+  ${screenSize.laptop} {
+    display: none;
+  }
+
+  ${(props) =>
+    !props.isOpen &&
+    `
+    transform: translateX(62px)
+  `};
+
+  .menu-icon {
+    svg {
+      width: 20px;
+      height: auto;
     }
   }
 `;
