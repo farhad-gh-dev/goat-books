@@ -33,6 +33,10 @@ export const All = () => {
       <Template type="search" />
       <WhiteSpace />
       <Template type="arrow" />
+      <WhiteSpace />
+      <Template type="close" />
+      <WhiteSpace />
+      <Template type="burger-menu" />
     </div>
   );
 };

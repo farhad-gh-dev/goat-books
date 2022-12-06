@@ -9,6 +9,8 @@ import {
   RibbonFilled as RibbonFilledIcon,
   Search as SearchIcon,
   Arrow as ArrowIcon,
+  Close as CloseIcon,
+  BurgerMenu as BurgerMenuIcon,
 } from "./Svgs";
 
 export type IconTypes =
@@ -19,7 +21,9 @@ export type IconTypes =
   | "ribbon"
   | "ribbon-filled"
   | "search"
-  | "arrow";
+  | "arrow"
+  | "close"
+  | "burger-menu";
 
 export type CustomIconProps = {
   type?: IconTypes;
@@ -64,6 +68,10 @@ const TargetIcon: React.FC<{ type?: IconTypes }> = ({ type = "" }) => {
       return <SearchIcon />;
     case "arrow":
       return <ArrowIcon />;
+    case "close":
+      return <CloseIcon />;
+    case "burger-menu":
+      return <BurgerMenuIcon />;
     default:
       return null;
   }
