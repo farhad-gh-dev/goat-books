@@ -12,10 +12,21 @@ import {
 } from "./SideBar.styled";
 import { BrandLogo, CustomIcon } from "Components/Atoms";
 
-const isActive = true;
+type SidebarItem = {
+  title: string;
+  link: string;
+  isActive?: boolean;
+};
 
+const sidebarLinks: SidebarItem[] = [
+  { title: "trending", link: "/app", isActive: true },
+  { title: "your posts", link: "/posts" },
+  { title: "liked posts", link: "/likes" },
+  { title: "saved posts", link: "/saves" },
+  { title: "account settings", link: "/settings" },
+];
 export const SideBar: React.FC = () => {
-  const [isOpenInMobileSize, setIsOpenInMobileSize] = useState(true);
+  const [isOpenInMobileSize, setIsOpenInMobileSize] = useState(false);
   const theme: any = useTheme();
 
   return (
@@ -35,23 +46,16 @@ export const SideBar: React.FC = () => {
         <BrandLogo className="brand-logo" isDark={theme.name === "dark"} />
 
         <LinksList>
-          <ListItem isActive={isActive}>
-            <ActiveIndicator />
-            <ItemLink href="/">
-              <LinkText isSpan textTransform="capitalize">
-                trending
-              </LinkText>
-            </ItemLink>
-          </ListItem>
-
-          <ListItem>
-            <ActiveIndicator />
-            <ItemLink href="/">
-              <LinkText isSpan textTransform="capitalize">
-                your posts
-              </LinkText>
-            </ItemLink>
-          </ListItem>
+          {sidebarLinks.map((item) => (
+            <ListItem isActive={item.isActive}>
+              <ActiveIndicator />
+              <ItemLink href={item.link}>
+                <LinkText isSpan textTransform="capitalize">
+                  {item.title}
+                </LinkText>
+              </ItemLink>
+            </ListItem>
+          ))}
         </LinksList>
       </ContentContainer>
     </StyledSideBar>

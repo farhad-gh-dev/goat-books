@@ -3,12 +3,14 @@ import { StyledTopBar } from "./TopBar.styled";
 import { NavProfile, SearchBar } from "Components/Molecules";
 import { dummyData } from "./Api/dummyData";
 
-export const TopBar: React.FC = () => {
-  const [profileData] = useState(dummyData);
+type Props = {
+  handleSearch?: (i: string) => void;
+};
 
-  const handleSearch = (searchTerm?: string) => {
-    // To be implemented...
-  };
+export const TopBar: React.FC<Props> = ({
+  handleSearch = (i) => console.log(i),
+}) => {
+  const [profileData] = useState(dummyData);
 
   return (
     <StyledTopBar>

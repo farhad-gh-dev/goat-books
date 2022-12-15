@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const StyledPostsList = styled.div`
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, 390px);
-  grid-auto-rows: 15px;
-  justify-content: center; */
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 `;
+
+export const PostsContainer = styled.div``;
 
 export const ListColumn = styled.div``;

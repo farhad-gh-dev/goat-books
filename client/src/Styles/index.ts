@@ -53,6 +53,10 @@ export const breakpoint = {
   largeScreen: 1920,
 };
 
+export const pageContentSize = {
+  largeScreen: 1680,
+};
+
 export const screenSize = {
   laptop: `@media (min-width: ${breakpoint.laptopScreen}px)`,
   desktop: `@media (min-width: ${breakpoint.largeScreen}px)`,

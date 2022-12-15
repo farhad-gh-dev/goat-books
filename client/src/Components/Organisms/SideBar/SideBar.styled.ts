@@ -4,9 +4,18 @@ import { screenSize, typography } from "Styles";
 import { hexToRgb } from "Styles/mixins";
 
 export const StyledSideBar = styled.div`
+  position: relative;
   height: 100%;
-  background-color: red;
-  box-shadow: 0 0 10px #000;
+  background-color: ${(props) => hexToRgb(props.theme.color.contrast, 0.2)};
+
+  ${screenSize.laptop} {
+    overflow: hidden;
+    border: 1px solid ${(props) => hexToRgb(props.theme.color.contrast, 0.01)};
+    border-radius: 20px;
+    box-shadow: 0px 0px 16px
+      ${(props) => hexToRgb(props.theme.color.contrast, 0.15)};
+    z-index: 1000;
+  }
 `;
 
 export const ContentContainer = styled.div<{ isOpen?: boolean }>`
@@ -15,7 +24,6 @@ export const ContentContainer = styled.div<{ isOpen?: boolean }>`
   height: 100%;
   padding: 21px;
   background-color: white;
-
   transition: 0.3s ease-in-out;
 
   ${screenSize.laptop} {
