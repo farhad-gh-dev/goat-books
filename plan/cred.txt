@@ -1,3 +1,0 @@
-db:
-container_name: my_postgres
-password: k6ni29ha7ufa
