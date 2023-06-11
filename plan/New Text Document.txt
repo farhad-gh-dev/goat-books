@@ -1,0 +1,32 @@
+- You may implement your project in any language(s).
+
+
+due date: 6/30/2023
+scope: cs-50 final project
+
+front-end:
+resources: storybook, react, react-router, styled-component, react-hook-form, zod, react-query
+
+back-end:
+resources: js, nestjs, sql
+
+
+
+Week 1: Project Setup, Learning Nest.js Basics and Building the Backend
+Weekdays: Spend 2 hours each weekday on learning the basics of Nest.js and building a simple API with it.
+Weekend 1: Set up your SQL database, define your schema, and connect it with Nest.js. Start implementing the user sign up/sign in APIs.
+
+
+Week 2: Continue Building the Backend
+Weekdays: Continue building other necessary API endpoints for the application (like posting, liking, and disliking quotes).
+Weekend 2: Finish building out all the remaining API endpoints (for retrieving posts, trending posts, bookmarked posts, and user settings).
+
+
+Week 3: Integration with Frontend
+Weekdays: Design and implement the sign up/sign in pages, and integrate with your API.
+Weekend 3: Design and develop the main dashboard, trending posts, and bookmarked posts pages.
+
+Week 4: Finalize Frontend, Testing, Debugging, and Deployment
+Weekdays: Develop the user settings page and the quote posting feature. Start testing the functionalities.
+Weekend 4: Finish testing, debug any issues, and prepare for deployment.
+Deploy your website, conduct final tests, and review the project for your final presentation.

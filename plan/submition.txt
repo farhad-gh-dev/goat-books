@@ -1,0 +1,12 @@
+- a short video (no more than 3 mins) as with slides, screenshots, voiceover, and/or live action.
+- should include the project’s title, your name, your city and country.
+- Upload the video to YouTube (it’s fine to flag it as “unlisted,” but don’t flag it as “private.”)
+- Submit the video
+
+- Create a README.md in the project, This should include the Project Title, the URL of the video and a description of the project. like the template below
+# YOUR PROJECT TITLE
+#### Video Demo:  <URL HERE>
+#### Description:
+TODO
+-  should at least be several hundred words that describe things in detail!
+- Your README.md file should be minimally multiple paragraphs in length, and should explain what your project is, what each of the files you wrote for the project contains and does, and if you debated certain design choices, explaining why you made them. 
