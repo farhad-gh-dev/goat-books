@@ -4,9 +4,12 @@ import {
   Column,
   CreateDateColumn,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
 
 import { User } from '@/modules/user/entities';
+
+import { PostReactions } from './post-reactions.entity';
 
 @Entity()
 export class Post {
@@ -25,15 +28,12 @@ export class Post {
   @Column()
   author: string;
 
-  @Column({ default: 0 })
-  numLikes: number;
-
-  @Column({ default: 0 })
-  numDislikes: number;
-
   @CreateDateColumn()
   createdAt: Date;
 
   @ManyToOne(() => User, { eager: false })
   user: User;
+
+  @OneToMany(() => PostReactions, (postReaction) => postReaction.post)
+  reactions: PostReactions[];
 }

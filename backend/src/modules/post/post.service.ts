@@ -8,7 +8,7 @@ import { Repository } from 'typeorm';
 
 import { User } from '@/modules/user/entities';
 
-import { Post } from './entities';
+import { Post, PostReactions, ReactionType } from './entities';
 import { CreatePostDto } from './dto';
 
 @Injectable()
@@ -18,6 +18,8 @@ export class PostService {
     private postsRepository: Repository<Post>,
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    @InjectRepository(PostReactions)
+    private postReactionsRepository: Repository<PostReactions>,
   ) {}
 
   private buildPostResponse(post: Post) {
@@ -80,7 +82,67 @@ export class PostService {
   }
 
   async findAll() {
-    const posts = await this.postsRepository.find({ relations: ['user'] });
-    return posts.map((post) => this.buildAllPostsResponse(post));
+    const posts = await this.postsRepository.find({
+      relations: ['user', 'reactions'],
+    });
+
+    return posts.map((post) => {
+      const { user, reactions, ...postWithoutUser } = post;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { password, ...userWithoutPassword } = user;
+
+      const likes = reactions.filter(
+        (reaction) => reaction.reactionType === ReactionType.LIKE,
+      ).length;
+      const dislikes = reactions.filter(
+        (reaction) => reaction.reactionType === ReactionType.DISLIKE,
+      ).length;
+
+      return {
+        ...postWithoutUser,
+        user: userWithoutPassword,
+        reactions: {
+          likes,
+          dislikes,
+        },
+      };
+    });
+  }
+
+  async createReaction(
+    userId: string,
+    postId: string,
+    reactionType: ReactionType,
+  ) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    const post = await this.postsRepository.findOne({ where: { id: postId } });
+
+    if (!user || !post) {
+      throw new Error('User or Post not found');
+    }
+
+    const existingReaction = await this.postReactionsRepository
+      .createQueryBuilder('reaction')
+      .where('reaction.user.id = :userId', { userId })
+      .andWhere('reaction.post.id = :postId', { postId })
+      .getOne();
+
+    if (existingReaction) {
+      if (existingReaction.reactionType === reactionType) {
+        await this.postReactionsRepository.remove(existingReaction);
+        return { message: 'Reaction removed.' };
+      } else {
+        existingReaction.reactionType = reactionType;
+        await this.postReactionsRepository.save(existingReaction);
+        return existingReaction;
+      }
+    } else {
+      const newReaction = new PostReactions();
+      newReaction.user = user;
+      newReaction.post = post;
+      newReaction.reactionType = reactionType;
+      await this.postReactionsRepository.save(newReaction);
+      return newReaction;
+    }
   }
 }
