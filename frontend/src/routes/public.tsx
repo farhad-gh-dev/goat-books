@@ -1,9 +1,12 @@
 import { Suspense } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 
+import { AuthLayout } from "@/components/layouts";
+import { LoginForm } from "@/features/auth";
+
 const AuthRoutes = () => {
   return (
-    <div>
+    <AuthLayout>
       <Suspense
         fallback={
           <div>
@@ -13,7 +16,7 @@ const AuthRoutes = () => {
       >
         <Outlet />
       </Suspense>
-    </div>
+    </AuthLayout>
   );
 };
 
@@ -23,7 +26,7 @@ export const publicRoutes = [
     element: <AuthRoutes />,
     children: [
       { path: "/", element: <Navigate to="/auth/sign-in" /> },
-      { path: "/auth/sign-in", element: <div>sign-in page</div> },
+      { path: "/auth/sign-in", element: <LoginForm /> },
       { path: "/*", element: <Navigate to="/auth/sign-in" /> },
     ],
   },

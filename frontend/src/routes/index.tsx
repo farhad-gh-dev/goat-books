@@ -4,7 +4,7 @@ import { protectedRoutes } from "./protected";
 import { publicRoutes } from "./public";
 
 export const AppRoutes = () => {
-  const isUserLoggedIn = true;
+  const isUserLoggedIn = false;
   const isLoading = false;
 
   const routes = isUserLoggedIn ? protectedRoutes : publicRoutes;
