@@ -1,11 +1,10 @@
-export const storage = {
-  getAuthStatus: () => {
-    return JSON.parse(window.localStorage.getItem(`user_token`) || "");
-  },
-  setAuthStatus: (value: boolean) => {
-    window.localStorage.setItem(`user_token`, JSON.stringify(value));
-  },
-  clearAuthStatus: () => {
-    window.localStorage.removeItem(`user_token`);
-  },
+export const getToken = () => {
+  return localStorage.getItem("user_token");
+};
+export const clearToken = () => {
+  localStorage.removeItem(`user_token`);
+};
+
+export const setToken = (token: string) => {
+  localStorage.setItem("user_token", token);
 };
