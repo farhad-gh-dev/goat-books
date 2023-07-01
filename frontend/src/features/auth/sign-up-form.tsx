@@ -45,7 +45,12 @@ export const SignUpForm: React.FC = () => {
       {
         onSuccess: () =>
           toast("You singed up successfully.", { type: "success" }),
-        onError: () => toast("Sign up failed.", { type: "error" }),
+        onError: (error) => {
+          toast(
+            (error.response?.data as any).message || "Something went wrong.",
+            { type: "error" }
+          );
+        },
       }
     );
   };
@@ -140,8 +145,9 @@ export const SignUpForm: React.FC = () => {
             fontSize: "1rem",
           }}
           onClick={handleSubmit(handleFromSubmit)}
+          disabled={signUpMutation.isLoading}
         >
-          Sign Up
+          {signUpMutation.isLoading ? "Loading ..." : "Sign Up"}
         </Button>
       </form>
     </Box>

@@ -45,10 +45,13 @@ export const SignInForm: React.FC = () => {
       {
         onSuccess: () =>
           toast("You singed in successfully.", { type: "success" }),
-        onError: () =>
-          toast("Invalid username or password, sign in failed.", {
-            type: "error",
-          }),
+        onError: (error) =>
+          toast(
+            (error.response?.data as any).message || "Something went wrong.",
+            {
+              type: "error",
+            }
+          ),
       }
     );
   };
@@ -130,8 +133,9 @@ export const SignInForm: React.FC = () => {
             fontSize: "1rem",
           }}
           onClick={handleSubmit(handleFromSubmit)}
+          disabled={signInMutation.isLoading}
         >
-          Sign In
+          {signInMutation.isLoading ? "Loading ..." : "Sign In"}
         </Button>
       </form>
     </Box>

@@ -66,8 +66,11 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ profile }) => {
             type: "success",
           });
         },
-        onError: () => {
-          toast("Something went wrong.", { type: "error" });
+        onError: (error) => {
+          toast(
+            (error.response?.data as any).message || "Something went wrong.",
+            { type: "error" }
+          );
         },
       }
     );
@@ -157,8 +160,12 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ profile }) => {
         </Grid>
       </Grid>
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button type="submit" variant="contained" disabled={!formState.isDirty}>
-          Save
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={!formState.isDirty || updateProfileMutation.isLoading}
+        >
+          {updateProfileMutation.isLoading ? "Loading..." : "Save"}
         </Button>
       </Box>
     </form>

@@ -44,7 +44,11 @@ export const NewPostModal: React.FC = () => {
           toast("Post has been created successfully.", { type: "success" });
           closeHandler();
         },
-        onError: () => toast("Something went wrong.", { type: "error" }),
+        onError: (error) =>
+          toast(
+            (error.response?.data as any).message || "Something went wrong.",
+            { type: "error" }
+          ),
       }
     );
   };
@@ -126,8 +130,15 @@ export const NewPostModal: React.FC = () => {
           </Grid>
         </DialogContent>
         <DialogActions sx={{ padding: "8px 24px" }}>
-          <Button onClick={closeHandler}>Cancel</Button>
-          <Button onClick={handleSubmit(formSubmitHandler)}>Submit</Button>
+          {!createPostMutation.isLoading && (
+            <Button onClick={closeHandler}>Cancel</Button>
+          )}
+          <Button
+            disabled={createPostMutation.isLoading}
+            onClick={handleSubmit(formSubmitHandler)}
+          >
+            {createPostMutation.isLoading ? "Loading ..." : "Submit"}
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
