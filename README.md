@@ -2,7 +2,9 @@
 
 #### Video Demo: <https://www.youtube.com/watch?v=a9WtK_TVzwE>
 
-#### App Address:
+#### App Address: <https://goat-quotes.netlify.app/>
+
+please bear in mind that this app is hosted on free services, so the loadings can take a bit bit of time to finish.
 
 #### Description:
 
