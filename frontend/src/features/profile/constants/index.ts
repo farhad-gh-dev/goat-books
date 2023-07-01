@@ -4,4 +4,8 @@ import { ProfileFromValues } from "../types";
 
 export const profileFormDefaultValues: DefaultValues<ProfileFromValues> = {
   profileImage: "",
+  email: "",
+  username: "",
+  password: "",
+  repeatPassword: "",
 };

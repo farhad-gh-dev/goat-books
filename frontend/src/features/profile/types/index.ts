@@ -12,3 +12,9 @@ export type UserProfile = {
   profileImage?: string;
   createdAt: Date;
 };
+
+export type UpdateUserProfile = {
+  username?: string;
+  password?: string;
+  profileImage?: string;
+};
