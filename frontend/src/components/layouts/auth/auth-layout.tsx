@@ -47,7 +47,7 @@ export const AuthLayout: React.FC<{ children: React.ReactNode }> = ({
                   style={{ width: "48px", height: "48px" }}
                 />
                 <Typography variant="h5" sx={{ fontWeight: "medium" }}>
-                  Goat Books
+                  Goat Quotes
                 </Typography>
               </Box>
               {children}

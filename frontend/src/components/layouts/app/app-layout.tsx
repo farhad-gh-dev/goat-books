@@ -72,7 +72,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({
                 variant="h6"
                 sx={{ display: { xs: "none", sm: "unset" } }}
               >
-                Goat Books
+                Goat Quotes
               </Typography>
             </Box>
           </Box>

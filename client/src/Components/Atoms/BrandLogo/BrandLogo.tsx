@@ -22,12 +22,12 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     >
       <LogoImage
         src={isDark ? LogoLight : LogoDark}
-        alt="goat books"
+        alt="goat Quotes"
         imageOnly={imageOnly}
       />
       {!imageOnly ? (
         <BrandTitle>
-          <span>G</span>oat <span>B</span>ooks
+          <span>G</span>oat <span>Q</span>uotes
         </BrandTitle>
       ) : null}
     </StyledBrandLogo>
