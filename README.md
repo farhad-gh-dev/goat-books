@@ -2,6 +2,8 @@
 
 #### Video Demo: <https://www.youtube.com/watch?v=a9WtK_TVzwE>
 
+#### App Address:
+
 #### Description:
 
 Harvard university online course final project - An application to share your favorite quotes with others! it can be a quote from your cherished book, movie or even anime. you can also checkout trending posts and find some awesome and inspiring quotes.
