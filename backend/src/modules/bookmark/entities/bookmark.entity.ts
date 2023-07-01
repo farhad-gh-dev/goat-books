@@ -8,9 +8,9 @@ export class Bookmark {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => User, { eager: true })
+  @ManyToOne(() => User, { eager: true, onDelete: 'CASCADE' })
   user: User;
 
-  @ManyToOne(() => Post, { eager: true })
+  @ManyToOne(() => Post, { eager: true, onDelete: 'CASCADE' })
   post: Post;
 }

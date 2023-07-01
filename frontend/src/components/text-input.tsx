@@ -9,6 +9,7 @@ export interface TexInputProps extends Omit<TextFieldProps, "variant"> {
 export const TexInput: React.FC<TexInputProps> = ({
   name,
   controller,
+  sx,
   ...rest
 }) => {
   const { field } = useController({
@@ -16,5 +17,16 @@ export const TexInput: React.FC<TexInputProps> = ({
     control: controller,
   });
 
-  return <TextField {...rest} {...field} />;
+  return (
+    <TextField
+      {...rest}
+      {...field}
+      sx={{
+        ...sx,
+        "& .MuiFormHelperText-root": {
+          mx: 0,
+        },
+      }}
+    />
+  );
 };

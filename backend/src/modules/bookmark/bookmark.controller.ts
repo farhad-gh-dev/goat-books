@@ -1,7 +1,6 @@
 import {
   Controller,
   Post,
-  Delete,
   Get,
   Param,
   UseGuards,
@@ -20,11 +19,6 @@ export class BookmarkController {
   @Post('/:postId')
   addBookmark(@Req() req, @Param('postId', ParseUUIDPipe) postId: string) {
     return this.bookmarkService.addBookmark(req.user.id, postId);
-  }
-
-  @Delete('/:postId')
-  removeBookmark(@Req() req, @Param('postId', ParseUUIDPipe) postId: string) {
-    return this.bookmarkService.removeBookmark(req.user.id, postId);
   }
 
   @Get()

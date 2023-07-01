@@ -2,6 +2,7 @@ import {
   Controller,
   Body,
   Param,
+  Query,
   Req,
   Post,
   Get,
@@ -28,8 +29,8 @@ export class PostController {
   }
 
   @Get('posts')
-  posts() {
-    return this.postsService.findAll();
+  posts(@Req() req, @Query() queryParams: any) {
+    return this.postsService.findAll(req.user.id, queryParams);
   }
 
   @Delete(':id')
@@ -37,7 +38,7 @@ export class PostController {
     return this.postsService.deletePost(req.user.id, id);
   }
 
-  @Post('/:postId/like')
+  @Post('/like/:postId')
   like(@Param('postId') postId: string, @Req() req) {
     return this.postsService.createReaction(
       req.user.id,
@@ -46,7 +47,7 @@ export class PostController {
     );
   }
 
-  @Post('/:postId/dislike')
+  @Post('/dislike/:postId')
   dislike(@Param('postId') postId: string, @Req() req) {
     return this.postsService.createReaction(
       req.user.id,

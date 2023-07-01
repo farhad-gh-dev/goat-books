@@ -22,7 +22,7 @@ export class Post {
   @Column()
   quote: string;
 
-  @Column()
+  @Column({ nullable: true })
   review: string;
 
   @Column()
@@ -30,6 +30,12 @@ export class Post {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @Column({ default: 0 })
+  likesCount: number;
+
+  @Column({ default: 0 })
+  dislikesCount: number;
 
   @ManyToOne(() => User, { eager: false })
   user: User;

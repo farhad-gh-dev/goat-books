@@ -45,6 +45,10 @@ export const SignInForm: React.FC = () => {
       {
         onSuccess: () =>
           toast("You singed in successfully.", { type: "success" }),
+        onError: () =>
+          toast("Invalid username or password, sign in failed.", {
+            type: "error",
+          }),
       }
     );
   };

@@ -1,4 +1,4 @@
-import { IsString, MaxLength } from 'class-validator';
+import { IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class CreatePostDto {
   @IsString()
@@ -6,9 +6,10 @@ export class CreatePostDto {
   title: string;
 
   @IsString()
-  @MaxLength(320)
+  @MaxLength(420)
   quote: string;
 
+  @IsOptional()
   @IsString()
   @MaxLength(320)
   review: string;

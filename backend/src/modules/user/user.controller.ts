@@ -2,6 +2,7 @@ import {
   Controller,
   Param,
   Body,
+  Req,
   Get,
   Put,
   Delete,
@@ -25,6 +26,11 @@ export class UserController {
   @Get('users')
   users() {
     return this.userService.findAll();
+  }
+
+  @Get('me')
+  user(@Req() req): any {
+    return this.userService.findOneById(req.user.id);
   }
 
   @UseGuards(CheckUserAuthority)

@@ -2,11 +2,13 @@ import {
   Injectable,
   NotFoundException,
   UnauthorizedException,
+  BadRequestException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 
 import { User } from '@/modules/user/entities';
+import { Bookmark } from '@/modules/bookmark/entities';
 
 import { Post, PostReactions, ReactionType } from './entities';
 import { CreatePostDto } from './dto';
@@ -20,6 +22,8 @@ export class PostService {
     private userRepository: Repository<User>,
     @InjectRepository(PostReactions)
     private postReactionsRepository: Repository<PostReactions>,
+    @InjectRepository(Bookmark)
+    private bookmarkRepository: Repository<Bookmark>,
   ) {}
 
   private buildPostResponse(post: Post) {
@@ -81,30 +85,65 @@ export class PostService {
     return { message: 'Post deleted successfully.' };
   }
 
-  async findAll() {
-    const posts = await this.postsRepository.find({
-      relations: ['user', 'reactions'],
-    });
+  async findAll(userId: string, queryParams: any) {
+    let order = {};
+    const { sort, searchTerm } = queryParams;
+
+    if (sort === 'likes') {
+      order = { likesCount: 'DESC' };
+    } else {
+      order = { createdAt: 'DESC' };
+    }
+
+    const findOptions = {
+      relations: ['user', 'reactions', 'reactions.user'],
+      order,
+    };
+
+    if (searchTerm) {
+      findOptions['where'] = [
+        { title: ILike(`%${searchTerm}%`) },
+        { author: ILike(`%${searchTerm}%`) },
+        { user: { username: ILike(`%${searchTerm}%`) } },
+      ];
+    }
+
+    const [posts, userBookmarks] = await Promise.all([
+      this.postsRepository.find(findOptions),
+      this.bookmarkRepository.find({
+        where: { user: { id: userId } },
+        relations: ['post'],
+      }),
+    ]);
+
+    const bookmarkedPostIds = userBookmarks.map((bookmark) => bookmark.post.id);
 
     return posts.map((post) => {
-      const { user, reactions, ...postWithoutUser } = post;
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { password, ...userWithoutPassword } = user;
-
-      const likes = reactions.filter(
+      const likes = post.reactions.filter(
         (reaction) => reaction.reactionType === ReactionType.LIKE,
-      ).length;
-      const dislikes = reactions.filter(
+      );
+      const dislikes = post.reactions.filter(
         (reaction) => reaction.reactionType === ReactionType.DISLIKE,
-      ).length;
+      );
+
+      const isLiked = likes.some((reaction) => reaction.user.id === userId);
+      const isDisliked = dislikes.some(
+        (reaction) => reaction.user.id === userId,
+      );
+
+      const isBookmarked = bookmarkedPostIds.includes(post.id);
 
       return {
-        ...postWithoutUser,
-        user: userWithoutPassword,
+        ...post,
+        user: post.user,
         reactions: {
-          likes,
-          dislikes,
+          likes: post.likesCount,
+          dislikes: post.dislikesCount,
         },
+        isLiked,
+        isDisliked,
+        isBookmarked,
+        isPostOwner: post.user.id === userId,
       };
     });
   }
@@ -118,25 +157,31 @@ export class PostService {
     const post = await this.postsRepository.findOne({ where: { id: postId } });
 
     if (!user || !post) {
-      throw new Error('User or Post not found');
+      throw new BadRequestException('User or Post not found');
     }
 
-    const existingReaction = await this.postReactionsRepository
-      .createQueryBuilder('reaction')
-      .where('reaction.user.id = :userId', { userId })
-      .andWhere('reaction.post.id = :postId', { postId })
-      .getOne();
+    const existingReaction = await this.postReactionsRepository.findOne({
+      where: { user: { id: userId }, post: { id: postId } },
+      relations: ['user', 'post'],
+    });
 
     if (existingReaction) {
       if (existingReaction.reactionType === reactionType) {
+        post[`${existingReaction.reactionType}sCount`] -= 1;
+        await this.postsRepository.save(post);
         await this.postReactionsRepository.remove(existingReaction);
         return { message: 'Reaction removed.' };
       } else {
+        post[`${existingReaction.reactionType}sCount`] -= 1;
+        post[`${reactionType}sCount`] += 1;
+        await this.postsRepository.save(post);
         existingReaction.reactionType = reactionType;
         await this.postReactionsRepository.save(existingReaction);
         return existingReaction;
       }
     } else {
+      post[`${reactionType}sCount`] += 1;
+      await this.postsRepository.save(post);
       const newReaction = new PostReactions();
       newReaction.user = user;
       newReaction.post = post;

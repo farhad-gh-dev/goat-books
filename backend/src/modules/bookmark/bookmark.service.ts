@@ -15,27 +15,26 @@ export class BookmarkService {
   ) {}
 
   async addBookmark(userId: string, postId: string) {
-    const bookmark = new Bookmark();
     const user = new User();
     user.id = userId;
     const post = new Post();
     post.id = postId;
 
-    bookmark.user = user;
-    bookmark.post = post;
+    const existingBookmark = await this.bookmarkRepository.findOne({
+      where: { user, post },
+    });
 
-    await this.bookmarkRepository.save(bookmark);
-    return { message: 'post has been bookmarked successfully.' };
-  }
+    if (existingBookmark) {
+      await this.bookmarkRepository.remove(existingBookmark);
+      return { message: 'Post has been un-bookmarked successfully.' };
+    } else {
+      const bookmark = new Bookmark();
+      bookmark.user = user;
+      bookmark.post = post;
 
-  async removeBookmark(userId: string, postId: string) {
-    const user = new User();
-    user.id = userId;
-    const post = new Post();
-    post.id = postId;
-    const test = await this.bookmarkRepository.delete({ user, post });
-    console.log(test);
-    return { message: 'post has been un-bookmarked successfully.' };
+      await this.bookmarkRepository.save(bookmark);
+      return { message: 'Post has been bookmarked successfully.' };
+    }
   }
 
   async getBookmarks(userId: string): Promise<Post[]> {

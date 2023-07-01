@@ -45,6 +45,7 @@ export const SignUpForm: React.FC = () => {
       {
         onSuccess: () =>
           toast("You singed up successfully.", { type: "success" }),
+        onError: () => toast("Sign up failed.", { type: "error" }),
       }
     );
   };

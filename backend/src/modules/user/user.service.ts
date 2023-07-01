@@ -95,6 +95,14 @@ export class UserService {
     return this.userRepository.findOne({ where: { email } });
   }
 
+  async findOneById(id: string): Promise<any> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+    return this.buildUserResponse(user);
+  }
+
   async findAll() {
     const users = await this.userRepository.find();
     return users.map((user) => this.buildUserResponse(user));
