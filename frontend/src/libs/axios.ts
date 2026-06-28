@@ -17,7 +17,7 @@ axios.interceptors.response.use(
       error.config.url !== "/auth/sign-in"
     ) {
       clearToken();
-      window.location.href = "/auth/sing-in";
+      window.location.href = "/auth/sign-in";
     }
     return Promise.reject(error);
   }
